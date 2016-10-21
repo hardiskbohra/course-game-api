@@ -47,15 +47,17 @@ router.get('/getById/:id',function(req, res, next){
 });
 
 
-// localhost:3000/users/authenticate
+// localhost:3000/users/login
 router.post('/login',function(req, res, next){
   MongoClient.connect(connectionString, function(err, db) {
     if(!err) {
       var collection = db.collection('User');
-      var email = req.body.email;
+      var username = req.body.username;
       var password = req.body.password;
 
-      collection.findOne({"email": email, "password": password}, function(err, user) {
+      console.log(username + "   " + password);
+
+      collection.findOne({"username": username}, function(err, user) {
         if (err) {
           res.status(500);
     		  res.json({"Status":false,"Result":err});
@@ -67,7 +69,7 @@ router.post('/login',function(req, res, next){
           }
           else {
             res.status(200);
-            res.send({"Status":true,"Result":user});
+            res.send({"Status":true,"Result":"Successfully logged in.","LoggedUser":user});
           }
         }
       });
