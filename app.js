@@ -10,11 +10,20 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var courses = require('./routes/courses');
 
-var app = express();z
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+var header = function(request,response, next){
+  response.header("Access-Control-Allow-Origin",'*');
+  response.header("Access-Control-Allow-Methods",'GET,POST,PUT,DELETE');
+  response.header("Access-Control-Allow-Headers",'Content-Type, x-access-token');
+  next();
+}
+
+app.use(header);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
