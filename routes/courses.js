@@ -12,11 +12,9 @@ router.get('/', function(req, res, next) {
       var collection = db.collection('Course');
       collection.find().toArray(function(err, record) {
         if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":record});
         }
       });
@@ -34,11 +32,9 @@ router.get('/getById/:id',function(req, res, next){
 
       collection.findOne({"_id": new ObjectId(id)}, function(err, record) {
         if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":record});
         }
       });
@@ -63,11 +59,9 @@ router.post('/insert',function(req, res, next){
         userId: ObjectId(req.body.userId)
       }, function(err, user) {
     		if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":"Record inserted successfully.", "insertedRecord": user.ops[0]});
         }
       });
@@ -91,10 +85,8 @@ router.put('/update/:id', function(req, res, next){
         {$set: updatedRecord},
         function(err, object) {
             if (err){
-                res.status(500);
                 res.json({"Status":false, "Result":err});
             }else{
-                res.status(200);
                 res.json({"Status":true, "Result":"Record updated successfully."});
             }
         });
@@ -113,10 +105,8 @@ router.delete('/delete/:id', function(req,res, next){
       collection.remove({_id: ObjectId(id)},
         function(err, object) {
             if (err){
-                res.status(500);
                 res.json({"Status":false, "Result":err});
             }else{
-                res.status(200);
                 res.json({"Status":true, "Result":"Record deleted successfully."});
             }
         });

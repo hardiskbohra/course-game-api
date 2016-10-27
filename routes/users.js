@@ -12,11 +12,9 @@ router.get('/', function(req, res, next) {
       var collection = db.collection('User');
       collection.find().toArray(function(err, users) {
         if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":users});
         }
       });
@@ -33,11 +31,9 @@ router.get('/getById/:id',function(req, res, next){
 
       collection.findOne({"_id": new ObjectId(id)}, function(err, user) {
         if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":user});
         }
       });
@@ -58,16 +54,13 @@ router.post('/login',function(req, res, next){
 
       collection.findOne({"username": username}, function(err, user) {
         if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
           if(!user) {
-            res.status(404);
             res.send({"Status":false,"Result":"Authentication failed. User not found."});
           }
           else {
-            res.status(200);
             res.send({"Status":true,"Result":"Successfully logged in.","LoggedUser":user});
           }
         }
@@ -96,11 +89,9 @@ router.post('/register',function(req, res, next){
         contact: req.body.contact
       }, function(err, user) {
     		if (err) {
-          res.status(500);
     		  res.json({"Status":false,"Result":err});
         }
         else {
-          res.status(200);
           res.send({"Status":true,"Result":"Record inserted successfully.", "insertedUser": user.ops[0]});
         }
       });
@@ -124,10 +115,8 @@ router.put('/update/:id', function(req, res, next){
         {$set: updatedUser},
         function(err, object) {
             if (err){
-                res.status(500);
                 res.json({"Status":false, "Result":err});
             }else{
-                res.status(200);
                 res.json({"Status":true, "Result":"Record updated successfully."});
             }
         });
@@ -146,10 +135,8 @@ router.delete('/delete/:id', function(req,res, next){
       collection.remove({_id: ObjectId(id)},
         function(err, object) {
             if (err){
-                res.status(500);
                 res.json({"Status":false, "Result":err});
             }else{
-                res.status(200);
                 res.json({"Status":true, "Result":"Record deleted successfully."});
             }
         });
