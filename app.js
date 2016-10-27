@@ -10,9 +10,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var courses = require('./routes/courses');
 
-var app = express();z
-
-// view engine setup
+var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
