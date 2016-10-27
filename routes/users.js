@@ -24,7 +24,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
 // localhost:3000/users/getById/:id
 router.get('/getById/:id',function(req, res, next){
   MongoClient.connect(connectionString, function(err, db) {
