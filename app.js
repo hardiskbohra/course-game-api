@@ -10,7 +10,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var courses = require('./routes/courses');
 
-var app = express();z
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,14 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/courses', courses);
-/*
-// connection with mongo database....
-MongoClient.connect("mongodb://dishant:123456@ds053196.mlab.com:53196/coursegame", function(err, db) {
-  if(!err) {
-    console.log("We are connected");
-  }
-});
-*/
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

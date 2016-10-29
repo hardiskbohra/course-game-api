@@ -86,6 +86,8 @@ router.post('/register',function(req, res, next){
         institute: req.body.institute,
         username: req.body.username,
         password: req.body.password,
+        specialization: req.body.specialization,
+        university: req.body.university,
         contact: req.body.contact
       }, function(err, user) {
     		if (err) {
