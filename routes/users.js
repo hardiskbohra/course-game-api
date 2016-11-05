@@ -70,7 +70,7 @@ router.post('/login',function(req, res, next){
 });
 
 
-// localhost:3000/users/insert
+// localhost:3000/users/register
 router.post('/register',function(req, res, next){
   MongoClient.connect(connectionString, function(err, db) {
     if(!err) {
