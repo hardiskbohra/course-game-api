@@ -78,17 +78,21 @@ router.post('/register',function(req, res, next){
       var user = req.body;
 
     	collection.insert({
-        name: req.body.name,
-        type: req.body.type,
-        programme: req.body.programme,
-        year: req.body.year,
-        webmailId: req.body.webmailId,
-        institute: req.body.institute,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        userType: req.body.userType,
         username: req.body.username,
         password: req.body.password,
+        contact: req.body.contact,
         specialization: req.body.specialization,
         university: req.body.university,
-        contact: req.body.contact
+        city: req.body.city,
+        country: req.body.country,
+        facultyType: req.body.facultyType,
+        programme: req.body.programme,
+        studentId: req.body.studentId,
+        year: req.body.year,
+        semester: req.body.semester
       }, function(err, user) {
     		if (err) {
     		  res.json({"Status":false,"Result":err});
