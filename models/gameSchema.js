@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var gameSchema = new mongoose.Schema({
   title: {type: String, required: true},
-  difLevel: {type: String, required: true},
+  difLevel: {type: String, required: true, unique: false, uppercase:true},
   points: {type: Number, required: true},
   startTime: {type: Date, required: true},
   endTime: {type: Date, required: true},
@@ -10,6 +10,7 @@ var gameSchema = new mongoose.Schema({
   minScore: {type: Number, required: true},
   desc: {type: String, required: false},
   hintUrl: {type: String, required: false},
+  gameLink: {type: String, required: false},
   topicId: {type: mongoose.Schema.Types.ObjectId, ref: 'Topic'}
 });
 
